@@ -27,6 +27,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.default.urls')),
     path('password_reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(
-        template_name='accounts/password_reset_confirm.html'
+        template_name='registration/password_reset_confirm.html'
     ), name='password_reset_confirm'), #@
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
