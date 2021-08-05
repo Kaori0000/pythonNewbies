@@ -40,4 +40,6 @@ class LoginPageViewTest(TestCase):
        # self.assertContains(response, '<a href="%s">Login with GitHub</a>' % reverse('social_django.urls'),html=True)
         #check if the login page contains a hyper link for logging in with GitHub account
 
+# test if the user profile name matches with the user name
+#class UserProfileNameTest(TestCase):
 
