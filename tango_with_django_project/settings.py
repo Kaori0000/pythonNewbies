@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-from tango_with_django_project import keys
+#from tango_with_django_project import keys
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -174,5 +174,7 @@ LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/'
 # go to GitHub - developer settings, 
 # register a new application, obtain the client ID, and replace the value of SOCIAL_AUTH_GITHUB_KEY with your client ID
 # For SOCIAL_AUTH_GITHUB_SECRET, obtain the client secrets and replace the value with your client secrets
-SOCIAL_AUTH_GITHUB_KEY = keys.GITHUB_KEY    
-SOCIAL_AUTH_GITHUB_SECRET = keys.GITHUB_SECRET #
+
+
+#SOCIAL_AUTH_GITHUB_KEY = keys.GITHUB_KEY    
+#SOCIAL_AUTH_GITHUB_SECRET = keys.GITHUB_SECRET #

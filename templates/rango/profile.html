@@ -8,7 +8,9 @@
 {% block body_block %}
 <div class="jumbotron p-4">
     <div class="container">
-        <h1 class="jumbotron-heading">{{ selected_user.username }}'s Profile</h1>
+        <br/>
+        <br/>
+        <h1 class="jumbotron-heading"><font color="blue">{{ selected_user.username }}'s Profile</font></h1>
     </div>
 </div>
 
@@ -33,13 +35,15 @@
                 <a href="{{ user_profile.website }}">{{ user_profile.website }}</a>
             </p>
             {% endif %}
+            <br/>
+            <form>
+                <input type="button" value="Change Passwords" onclick="window.location.href='http://127.0.0.1:8000/accounts/password/change/'"/>
+            </form>
         </div>
     </div>
 </div>
 
 <hr>
-<form>
-    <input type="button" value="Change Passwords" onclick="window.location.href='http://127.0.0.1:8000/accounts/password/change/'"/>
-</form>
+
 
 {% endblock %}

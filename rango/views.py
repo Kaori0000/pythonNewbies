@@ -67,6 +67,8 @@ def add_category(request):
             print(form.errors)
     return render(request, 'rango/add_category.html', {'form': form})
 
+
+
 @login_required
 def add_page(request, category_name_slug):
     try:
@@ -214,6 +216,19 @@ class AddCategoryView(View):
         else:
             print(form.errors)
             return render(request, 'rango/add_category.html', {'form': form})
+
+def all_categories(request):
+    category_list = Category.objects.order_by('-likes')[:5]
+    page_list = Page.objects.order_by('-views')[:5]
+
+    context_dict = {}
+    context_dict['boldmessage'] = 'Crunchy, creamy, cookie, candy, cupcake!'
+    context_dict['categories'] = category_list
+    context_dict['pages'] = page_list
+
+    visitor_cookie_handler(request)
+    
+    return render(request, 'rango/all_categories.html', context=context_dict)
 
 class MyRegistrationView(RegistrationView):
     def get_success_url(self, user):
