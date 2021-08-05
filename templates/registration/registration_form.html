@@ -1,9 +1,13 @@
-{% extends 'rango/base.html' %}
+{% extends 'rango/log_base.html' %}
 {% block title_block %}
 Register
 {% endblock %}
+
 {% block body_block %}
-<h1>Register Here</h1>
+
+<div class="box">
+    <h1>Rango say...</h1>
+<h2>Register Here</h2>
 <form method="post" action=".">
 {% csrf_token %}
 {{ form.as_p }}

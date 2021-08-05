@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 {% load staticfiles %}
 {% load rango_template_tags %}
 
@@ -12,33 +11,48 @@
                 How to Tango with Django!
             {% endblock %}
         </title>
+        <link rel="stylesheet" type="text/css" href="{% static "CSS/mystyle.css" %}">
+       
     </head>
-    <body>
-        <div>
-        {% block body_block %}
-        {% endblock %}
+    <body class="body1">
+        <h1>Rango says...</h1>
+        <div id="header">
+            {% if user.is_authenticated %}
+                howdy {{ user.username }}!
+            {% else %}    
+            hey there partner! 
+            {% endif %}
+            <br/>
+            <strong style="font-size:10px;">{{ boldmessage }}</strong>
         </div>
         <div>
-            {% block sidebar_block %}
-                {% get_category_list category %}
-            {% endblock %}
-        </div>
-        <hr />
-        <div>
-            <ul>
+            <ul class="breadcrumb">
+                <li><a href="{% url 'rango:index' %}">Home</a></li>
+                <li><a href="{% url 'rango:index' %}">All Categories</a></li>
             {% if user.is_authenticated %}
                 <li><a href="{% url 'auth_logout' %}?next={% url 'rango:index' %}">Logout</a></li> 
-                <li><a href="{% url 'rango:add_category' %}">Add a New Category</a></li>
-                <li><a href="{% url 'auth_password_change' %}">Change password</a></li>
             {% else %}    
-                <li><a href="{% url 'registration_register' %}">Sign Up</a></li>
                 <li><a href="{% url 'auth_login' %}">Login</a></li>
-            {% endif %}   
-                <li><a href="{% url 'rango:about' %}">About</a></li>
-                <li><a href="{% url 'rango:index' %}">Index</a></li>
-             
+                <li><a href="{% url 'registration_register' %}">Sign Up</a></li>
+            {% endif %}             
+                <li><a href="{% url 'rango:about' %}">About Us</a></li>
+                <li><a href="{% url 'rango:index' %}">About Rango</a></li>
+                <li><a href="{% url 'rango:index' %}"><img id="picture" src="{% static "images/profile.jpg" %}"></a></li>
+                
                 
             </ul>
+            <div class="search-bar">
+                <form>
+                    <input type="text" placeholder="Please type what you what to search...">
+                    <button type="submit"></button>
+                </form>
+            </div>
+        
         </div>
-    </body>
-</html>
+        <div>
+        {% block body_block %}
+        
+        {% endblock %}
+        </div>
+        
+        

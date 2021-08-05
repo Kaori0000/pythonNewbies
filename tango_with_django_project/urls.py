@@ -22,10 +22,18 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views #
 from django.conf.urls import url #GitHub login
 
+
+
+
+
+
+
+
 urlpatterns = [
     path('',views.index,name='index'),
     path('rango/',include('rango.urls')),
     path('admin/', admin.site.urls),
+    
     path('accounts/', include('registration.backends.default.urls')),
     path('password_reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(
         template_name='registration/password_reset_confirm.html'

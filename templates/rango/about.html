@@ -1,18 +1,158 @@
+
 {% extends 'rango/base.html' %}
 {% load staticfiles %}
 
+
 {% block title_block %}
-    About Rango
+    About Us
 {% endblock %}
-    
+
+
 {% block body_block %}
-        <h1>Rango says...</h1>
-        <div>
-            here is the about page. <br />
-            This tutorial has been put together by Li Xiaoboyan<br />
-            <p>Visits: {{ visits }}</p>
+<body>
+        <div id="page-preloader"><span class="spinner"></span></div>
+		<!-- breadcrumbs-wrapper -->
+		<section class="content-wrapper">
+			<div class="container">
+				<div class="title">
+					<h1 style="text-align:center">About us</h1>
+				</div>
+				<p><strong>Rango</strong> was founded in 2021 with a vision to motivate and inspire avid amatuerish programmers for web languages knowledge sharing and exploring. We're a digital platform that brings hands-on experience and theoretical techniques together to foster skills and collaboration. We're free to use, open to everybody, and built on transparency.</p>
+				<p>Rango hosts reviews to help visitors learn on their own with confidence, and deliver rich insights to help improve the experiences they pursue for. The more hobbyists use our platform and share their own opinions, the richer the technology-related insights we offer, and the more opportunities they have to earn the precious advice and feedback from the counterparts all around the world.
+                </p>
+                <hr>
+				<div class="clear team-wrap">
+					<h3 style="text-align:center">Who We Are</h3>
+					<div class="row">
+						<article class="col-sm-3 team-item">
+							<div class="img">
+								<img src="{% static "images/grace.jpg" %}" alt="" width="150" height="150" />
+							</div>
+							<div class="team-text">
+								<h4>Grace</h4>
+								<p>Quisque vulputate facilisis quam, a fringilla purus varius at. Aliquam ut sodales quam, imperdiet condimentum elit. Fusce ac pharetra augue. </p>
+								<div class="spec">Web-Designer</div>
+								
+							</div>
+						</article>
+						<article class="col-sm-3 team-item">
+							<div class="img">
+								<img src="{% static "images/kaori.jpg" %}" alt="" width="150" height="150" />
+							</div>
+							<div class="team-text">
+								<h4>Kaori</h4>
+								<p>Quisque vulputate facilisis quam, a fringilla purus varius at. Aliquam ut sodales quam, imperdiet condimentum elit. Fusce ac pharetra augue. </p>
+								<div class="spec">Front-end Developer</div>
+							
+							</div>
+						</article>
+						<article class="col-sm-3 team-item">
+							<div class="img">
+								<img src="{% static "images/su.jpg" %}" alt="" width="150" height="150" />
+							</div>
+							<div class="team-text">
+								<h4>Su</h4>
+								<p>Quisque vulputate facilisis quam, a fringilla purus varius at. Aliquam ut sodales quam, imperdiet condimentum elit. Fusce ac pharetra augue. </p>
+								<div class="spec">Back-end Developer</div>
+							
+							</div>
+						</article>
+                        <article class="col-sm-3 team-item">
+							<div class="img">
+								<img src="{% static "images/yue.jpg" %}" alt="" width="150" height="150" />
+							</div>
+							<div class="team-text">
+								<h4>Yue</h4>
+								<p>Quisque vulputate facilisis quam, a fringilla purus varius at. Aliquam ut sodales quam, imperdiet condimentum elit. Fusce ac pharetra augue. </p>
+								<div class="spec">Web-Designer</div>
+								
+							</div>
+						</article>
+					</div>
+				</div>
+			</div>
+		</section>
+        <hr>
+    <!--================End Banner Area =================-->
+    <section class="contact_form_area2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h3 class="single_title">Contact Us</h3>
+                    <div class="row">
+                        <form class="contact_us_form" action="php/contact.php" method="post" id="phpcontactform">
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Your Name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <textarea class="form-control" id="message" name="message" placeholder="Message" rows="1"></textarea>
+                            </div>
+                            <div class="form-group col-md-12 button_area">
+                                <button type="submit" value="submit your quote" class="btn submit_blue form-control" id="js-contact-btn">Send message <i class="fa fa-angle-right"></i></button>
+                                <div id="js-contact-result" data-success-msg="Success, We will get back to you soon" data-error-msg="Oops! Something went wrong"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <h3 class="single_title">Contact Details</h3>
+                    <div class="contact_details_inner">
+                        <div class="media">
+                            <div class="media-left">
+                                <i class="fa fa-map-marker"></i>
+                            </div>
+                            <div class="media-body">
+                                <p>Glasgow, G12 8QQ, Scotland </p>
+                    
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <i class="fa fa-envelope-o"></i>
+                            </div>
+                            <div class="media-body">
+                                <a href="#">cats@student.gla.ac.uk</a><br>
+            
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <div class="media-body">
+                                <a href="#">+ 1800 562 2487</a><br>
+                                <a href="#">+ 3215 546 8975</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-            <img src="{% static "images/rango.jpg" %}" alt="Picture of Rango" />
-            <img src="{{MEDIA_URL}}cat.jpg" alt="Picture of a Cat." />
-        </div>
+    </section>
+    <!--================End Banner Area =================-->
+
+</body>
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
