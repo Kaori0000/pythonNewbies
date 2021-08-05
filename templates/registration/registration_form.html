@@ -6,26 +6,10 @@ Register
 <div class="box">
     <h1>Rango say...</h1>
 <h2>Register Here</h2>
-<form method="post" action=".">
+<form class="form" method="post" action=".">
 {% csrf_token %}
-<p id="p">Name</p>
-<div class="inputBox">
-    <input type="text" name="username" required="required" >
-</div>
-<p id="p2">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
-<p id="p">E-mail</p>
-<div class="inputBox">
-    <input type="text" name="email" required="required" >
-</div>
-<p id="p">password</p>
-<div class="inputBox">
-    <input type="password" name="password" required="required">
-</div>
-<p id="p">password</p>
-<div class="inputBox">
-    <input type="password" name="password2" required="required">
-</div>
-<p id="p2">Enter the same password as before, for verification.</p>
+{{ form.as_p }}
 <input type="submit" value="Register" />
 </form>
+</div>
 {% endblock %}

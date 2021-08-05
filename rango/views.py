@@ -95,7 +95,7 @@ def add_page(request, category_name_slug):
     context_dict = {'form': form, 'category': category}
     return render(request, 'rango/add_page.html', context=context_dict)
     
-def register(request):
+#def register(request):
     registered = False
 
     if request.method == 'POST':
@@ -125,12 +125,12 @@ def register(request):
         user_form = UserForm()
         profile_form = UserProfileForm()
 
-    return render(request, 'rango/register.html', 
+    return render(request, 'registration/register.html', 
                   context = {'user_form': user_form,
                              'profile_form': profile_form,
                              'registered': registered})
 
-def user_login(request):
+#def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -152,8 +152,8 @@ def user_login(request):
     else:
         return render(request, 'registration/login.html')
 
-@login_required
-def restricted(request):
+#@login_required
+#def restricted(request):
     return render(request, 'rango/restricted.html')
 
 @login_required
@@ -250,7 +250,14 @@ class AboutView(View):
         context_dict['visits'] = request.session['visits']
         
         return render(request,'rango/about.html',context_dict)
+class AboutRangoView(View):
+    def get(self, request):
+        context_dict = {}
 
+        visitor_cookie_handler(request)
+        context_dict['visits'] = request.session['visits']
+        
+        return render(request,'rango/about_rango.html',context_dict)
 
 class AddCategoryView(View):
     @method_decorator(login_required)
