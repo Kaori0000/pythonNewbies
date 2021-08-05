@@ -20,6 +20,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views #
+from django.conf.urls import url #GitHub login
 
 urlpatterns = [
     path('',views.index,name='index'),
@@ -32,5 +33,5 @@ urlpatterns = [
     path('password_reset_complete/', auth_views.PasswordResetCompleteView.as_view(
         template_name='registration/password_reset_complete.html'
     ), name='password_reset_complete'), 
-    #@
+    url(r'^oauth/', include('social_django.urls', namespace='social')), #GitHub login
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
