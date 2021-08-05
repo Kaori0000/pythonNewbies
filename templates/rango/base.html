@@ -12,131 +12,10 @@
                 How to Tango with Django!
             {% endblock %}
         </title>
-        <style>
-            body
-            {
-                background-image:url('{% static "images/rango.jpg" %}');
-                background-repeat:no-repeat;
-            }
-            h1 
-            {
-                
-                text-indent:235px;
-                font-size:50px;
-                margin-bottom:10px;
-                color:#505050;
-                font-family:"Lucida Console", Monaco, monospace;
-            }
-            h2{
-                font-size:24px;
-                color:#505050;
-                font-family:Arial, Helvetica, sans-serif;
-            }
-            #header
-            {
-                width:400px;
-                position:absolute;
-	            left:235px;
-                font-size:30px;
-                word-spacing: 1px;
-                line-height:70%;
-                text-align:center;
-                color:#606060;
-                font-family:Arial, Helvetica, sans-serif;
-            }
-            #most-part
-            {
-                height: 150px;
-	            padding:20px 40px; 
-                margin-bottom:20px;
-	            border-radius:15px;
-                box-shadow: 0 0  20px #a3a3a3
-            }
-            #most-part:hover
-            {
-                box-shadow: 0 0  25px #404040
-            }
-            ul.breadcrumb {
-                font-size:20px;
-                margin-left:650px;
-                margin-top:-20px;
-
-            padding: 8px 16px;
-            list-style: none;
-            }
-            ul.breadcrumb li {display: inline;}
-            ul.breadcrumb li+li:before {
-             padding: 8px;
-            color: black;
-            content: "\00a0";
-        }
-        ul.breadcrumb li a {color: #505050;}
-        ul.breadcrumb li a.active {
-        color: rgb(77, 113, 168);
-        }
-        ul.breadcrumb li a:hover:not(.active) {color: rgb(77, 113, 168);}
-        #picture{          
-        max-height:30px; 
-        max-width:30px; 
-        }
-        
-        input{
-            outline: none;
-        }
-        button {
-            border: none;}
-        form {
-            position: relative;
-            width: 750px;
-            margin: 0 auto;
-        }
-
-        input {
-            width: 100%;
-            height: 42px;
-            padding-left: 13px;
-        }
-
-        button {
-            height: 26px;
-            width: 26px;
-            cursor: pointer;
-            
-            position: absolute;
-        }
-
-        .search-bar form {
-            height: 42px;
-        }
-        .search-bar input {
-            width: 270px;
-            border-radius: 42px;
-            transition: .3s linear;
-            float: right;
-        }
-        .search-bar input:focus {
-            width: 300px;
-        }
-        .search-bar button {
-            top:10px;
-            background:url('{% static "images/search.jpg" %}');
-            background-size: cover;
-            right: 8px;
-        }
-        
-        .column1 {
-        float: left;
-        width: 280px;
-        
-        }
-        .column2 {
-        float: left;
-        width: 650px;
-        border-left: 2px solid #606060;
-        }
-        </style>
+        <link rel="stylesheet" type="text/css" href="{% static "CSS/mystyle.css" %}">
+       
     </head>
-    <body>
+    <body class="body1">
         <h1>Rango says...</h1>
         <div id="header">
             {% if user.is_authenticated %}
@@ -150,16 +29,17 @@
         <div>
             <ul class="breadcrumb">
                 <li><a href="{% url 'rango:index' %}">Home</a></li>
-                <li><a href="{% url 'rango:register' %}">All Categories</a></li>
+                <li><a href="{% url 'rango:index' %}">All Categories</a></li>
             {% if user.is_authenticated %}
-                <li><a href="{% url 'rango:logout' %}">Logout</a></li> 
+                <li><a href="{% url 'auth_logout' %}?next={% url 'rango:index' %}">Logout</a></li> 
             {% else %}    
-                <li><a href="{% url 'rango:login' %}">Login</a></li>
-                <li><a href="{% url 'rango:register' %}">Sign Up</a></li>
+                <li><a href="{% url 'auth_login' %}">Login</a></li>
+                <li><a href="{% url 'registration_register' %}">Sign Up</a></li>
             {% endif %}             
                 <li><a href="{% url 'rango:about' %}">About Us</a></li>
                 <li><a href="{% url 'rango:index' %}">About Rango</a></li>
                 <li><a href="{% url 'rango:index' %}"><img id="picture" src="{% static "images/profile.jpg" %}"></a></li>
+                
                 
             </ul>
             <div class="search-bar">

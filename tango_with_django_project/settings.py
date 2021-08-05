@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rango',
+    'registration',
 ]
 
 PASSWORD_HASHERS = [
@@ -67,7 +68,7 @@ ROOT_URLCONF = 'tango_with_django_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR, ],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -135,3 +136,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+REGISTRATION_OPEN = True
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = 'rango:index'
+LOGIN_URL = 'auth_login'
+ACCOUNT_ACTIVATION_DAYS = 7 #account activation eamil is set to be valid for 7 days 
+
+#allow account activation email/ reset password email
+#'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = 'smtp.gmail.com'  # mail service smtp
+EMAIL_HOST_USER = 'hc3406171@gmail.com'  # mymial is not any email: use environment variable to hide your email in production.
+EMAIL_HOST_PASSWORD ='oqfhqztsaskqvbxd'   # password
+EMAIL_PORT = 587
+#EMAIL_USE_TLS = True
+EMAIL_USE_TLS = True
+#EMAIL_USE_SSL = True
+
