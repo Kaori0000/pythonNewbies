@@ -257,6 +257,21 @@ label{
         left: 50%;
         transform: translate(-50%);
         }
+        button{
+            border-color: -internal-light-dark(rgb(199, 198, 198), rgb(133, 133, 133));
+            }
+        .body2 button{
+            border: none;
+            outline: none;
+            color: #fff;
+            background: #03a9f4;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            position: relative;
+            left: 50%;
+            transform: translate(-50%);
+            }
    .body2 li{
     color: #587ab8;
     font-size: 14px;
@@ -327,15 +342,4 @@ label{
         border-left: #404040;
         margin-top: 40px
     }
-    #comment button{
-        border: none;
-        outline: none;
-        color: #fff;
-        background: #03a9f4;
-        padding: 10px 20px;
-        cursor: pointer;
-        border-radius: 5px;
-        position: relative;
-        left: 20%;
-        transform: translate(-50%);
-        }
+    

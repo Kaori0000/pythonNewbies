@@ -60,7 +60,25 @@
     <a href="{%url 'rango:add_comment' category.slug %}">Comment here...</a>
 
     <br/><br/>
-    
+    {%else%}
+    <h3>You have to login to comment</h3>
+    {% endif %}
+    {% if not category.comments.all %}
+        No comments yet...
+    {%else%}
+        {%for comment in category.comments.all%}
+        <br/><br/>
+        <hr>
+            <strong>
+                [{{comment.name}}]says:
+            </strong>
+                <br/>
+                {{comment.body}}
+                <br/> <br/>
+                {{comment.date_added}}
+                <hr>
+            
+        {% endfor%}
     {% endif %}  
 </div>
 
