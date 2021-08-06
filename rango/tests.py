@@ -1,4 +1,6 @@
-from django.test import TestCase
+from django.http import response
+from rango.models import UserProfile
+from django.test import TestCase, testcases
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.test.client import Client
@@ -27,7 +29,7 @@ class LoginTest(TestCase):
         self.assertFalse(logged_in)
 
 
-# Test if the login page contains hyperlinks for users to register, reset password, and login with their GitHub account
+# Test if the login page contains hyperlinks for users to register,and reset password
 class LoginPageViewTest(TestCase):
     def test_login_view_hyperlinks(self):
         response = self.client.get(reverse('auth_login'))
@@ -37,9 +39,45 @@ class LoginPageViewTest(TestCase):
         #check if the login page contains a hyper link for register
         self.assertContains(response, '<a href="%s">Reset here!</a>' % reverse('auth_password_reset'),html=True)
         #check if the login page contains a hyper link for reset password
-       # self.assertContains(response, '<a href="%s">Login with GitHub</a>' % reverse('social_django.urls'),html=True)
-        #check if the login page contains a hyper link for logging in with GitHub account
+       
+#class PasswordResetLinkTest(TestCase):
+    #def test_password_Reset_Link_(self):
+        #response = self.client.get(reverse('password_reset_confirm'))
+        #self.assertEqual(response.status_code, 200)
+        #self.assertContains(response,'Password reset failed. Invalid link.')
+     
 
-# test if the user profile name matches with the user name
-#class UserProfileNameTest(TestCase):
+class UserProfileUserNameTest(TestCase):
+    #check if the user profile name matches the user's name
+    def test_userProile_and_user(self):
+    
+        userA = User.objects.create_user(username='Alice')
+        userA.set_password('userAlice123!')
+        userA.save()
+
+        userProfile = UserProfile(user=userA)
+        userProfile.save()
+        self.assertEqual(userProfile.user.username, userA.username) 
+
+class AboutUsePageTest(TestCase):
+    def test_about_us_page(self):
+        response = self.client.get(reverse('rango:about'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response,'grace.jpg')
+        self.assertContains(response,'kaori.jpg')
+        self.assertContains(response,'su.jpg')
+        self.assertContains(response,'yue.jpg')
+        self.assertContains(response,'Contact Details')
+        self.assertContains(response,'Glasgow, G12 8QQ, Scotland')
+        self.assertContains(response,'cats@student.gla.ac.uk')
+
+#class UserProfileAccessTest(TestCase):
+    #def test_user_profile_access(self):
+        #c = Client()
+        #c.login(username='tester', password='tester123!')
+        #response = self.client.get(reverse('rango:profile'))
+       # response = self.client.get(reverse('rango:'))
+       # self.assertEqual(response.status_code,200)
+    
+#http://127.0.0.1:8000/rango/profile/Rango02/
 
