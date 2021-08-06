@@ -145,21 +145,17 @@ STATIC_URL = '/static/'
 
 REGISTRATION_OPEN = True
 REGISTRATION_AUTO_LOGIN = True
-LOGIN_REDIRECT_URL = 'rango:index'
-LOGIN_URL = 'auth_login'
+#LOGIN_REDIRECT_URL = 'rango:register_profile'
+#LOGIN_URL = 'auth_login'
 ACCOUNT_ACTIVATION_DAYS = 7 #account activation eamil is set to be valid for 7 days 
 
 #allow account activation email/ reset password email
-#'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-#EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = 'smtp.gmail.com'  # mail service smtp
-EMAIL_HOST_USER = 'hc3406171@gmail.com'  # email create for demonstration 
+EMAIL_HOST_USER = 'hc3406171@gmail.com'  # email create for demonstration #sender of all rango email
 EMAIL_HOST_PASSWORD ='oqfhqztsaskqvbxd'   # APP password of the example email
 EMAIL_PORT = 587
-#EMAIL_USE_TLS = True
 EMAIL_USE_TLS = True
-#EMAIL_USE_SSL = True
 
 #GitHub login---
 AUTHENTICATION_BACKENDS = (
@@ -175,6 +171,5 @@ LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/'
 # register a new application, obtain the client ID, and replace the value of SOCIAL_AUTH_GITHUB_KEY with your client ID
 # For SOCIAL_AUTH_GITHUB_SECRET, obtain the client secrets and replace the value with your client secrets
 
-
-#SOCIAL_AUTH_GITHUB_KEY = '37cf450f91e521899dff'  
-#SOCIAL_AUTH_GITHUB_SECRET = '9ffdbd95c4e278fc27dde61eafd482fcfe6e7f07'
+#SOCIAL_AUTH_GITHUB_KEY = keys.GITHUB_KEY
+#SOCIAL_AUTH_GITHUB_SECRET = keys.GITHUB_SECRET

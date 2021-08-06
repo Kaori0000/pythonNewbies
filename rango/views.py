@@ -47,7 +47,7 @@ def show_category(request, category_name_slug):
     try:
         category = Category.objects.get(slug=category_name_slug)
 
-        pages = Page.objects.filter(category=category)
+        pages = Page.objects.filter(category=category).order_by('-views')
 
         context_dict['pages'] = pages
         context_dict['category'] = category
@@ -261,6 +261,7 @@ class LikeCategoryView(View):
         category.likes = category.likes + 1
         category.save()
         return HttpResponse(category.likes)
+
 def goto_url(request):
     if request.method == 'GET':
         page_id = request.GET.get('page_id')
@@ -284,3 +285,4 @@ def search(request):
             result_list = run_query(query)
     
     return render(request, 'rango/search.html', {'result_list': result_list, 'query': query})
+
