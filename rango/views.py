@@ -67,6 +67,8 @@ def add_category(request):
             print(form.errors)
     return render(request, 'rango/add_category.html', {'form': form})
 
+
+
 @login_required
 def add_page(request, category_name_slug):
     try:
@@ -96,12 +98,6 @@ def add_page(request, category_name_slug):
     context_dict = {'form': form, 'category': category}
     return render(request, 'rango/add_page.html', context=context_dict)
     
-
-
-
-@login_required
-def restricted(request):
-    return render(request, 'rango/restricted.html')
 
 @login_required
 def user_logout(request):
@@ -197,7 +193,14 @@ class AboutView(View):
         context_dict['visits'] = request.session['visits']
         
         return render(request,'rango/about.html',context_dict)
+class AboutRangoView(View):
+    def get(self, request):
+        context_dict = {}
 
+        visitor_cookie_handler(request)
+        context_dict['visits'] = request.session['visits']
+        
+        return render(request,'rango/about_rango.html',context_dict)
 
 class AddCategoryView(View):
     @method_decorator(login_required)
@@ -214,6 +217,19 @@ class AddCategoryView(View):
         else:
             print(form.errors)
             return render(request, 'rango/add_category.html', {'form': form})
+
+def all_categories(request):
+    category_list = Category.objects.order_by('-likes')[:5]
+    page_list = Page.objects.order_by('-views')[:5]
+
+    context_dict = {}
+    context_dict['boldmessage'] = 'Crunchy, creamy, cookie, candy, cupcake!'
+    context_dict['categories'] = category_list
+    context_dict['pages'] = page_list
+
+    visitor_cookie_handler(request)
+    
+    return render(request, 'rango/all_categories.html', context=context_dict)
 
 class MyRegistrationView(RegistrationView):
     def get_success_url(self, user):

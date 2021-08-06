@@ -74,10 +74,10 @@ class AboutUsePageTest(TestCase):
 #class UserProfileAccessTest(TestCase):
     #def test_user_profile_access(self):
         #c = Client()
-       # c.login(username='tester', password='tester123!')
-      #  userProfile = UserProfile(user=c)
+        #c.login(username='tester', password='tester123!')
+        #response = self.client.get(reverse('rango:profile'))
        # response = self.client.get(reverse('rango:'))
-       # self.assertEqual(response.status_code,404)
+       # self.assertEqual(response.status_code,200)
     
-
+#http://127.0.0.1:8000/rango/profile/Rango02/
 

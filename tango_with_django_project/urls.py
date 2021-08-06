@@ -26,9 +26,6 @@ from django.conf.urls import url #GitHub login
 
 
 
-
-
-
 urlpatterns = [
     path('',views.index,name='index'),
     path('rango/',include('rango.urls')),

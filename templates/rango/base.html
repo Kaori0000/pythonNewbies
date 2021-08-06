@@ -28,7 +28,7 @@
         <div>
             <ul class="breadcrumb">
                 <li><a href="{% url 'rango:index' %}">Home</a></li>
-                <li><a href="{% url 'rango:index' %}">All Categories</a></li>
+                <li><a href="{% url 'rango:all_categories' %}">All Categories</a></li>
             {% if user.is_authenticated %}
                 <li><a href="{% url 'auth_logout' %}?next={% url 'rango:index' %}">Logout</a></li> 
             {% else %}    
@@ -36,8 +36,11 @@
                 <li><a href="{% url 'registration_register' %}">Sign Up</a></li>
             {% endif %}             
                 <li><a href="{% url 'rango:about' %}">About Us</a></li>
-                <li><a href="{% url 'rango:index' %}">About Rango</a></li>
-                <li><a href="{% url 'rango:index' %}"><img id="picture" src="{% static "images/profile.jpg" %}"></a></li>
+                <li><a href="{% url 'rango:about_rango' %}">About Rango</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'rango:profile' user.username %}"><img id="picture" src="{% static "images/profile.jpg" %}"></a></li>
+            {% endif %}             
+
                 
                 
             </ul>

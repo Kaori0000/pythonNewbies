@@ -1,8 +1,9 @@
-{% extends 'rango/base.html' %}
+{% extends 'rango/log_base.html' %}
 {% block title_block %}
 Login
 {% endblock %}
 {% block body_block %}
+<div class="box">
 <h1>Login</h1>
 <form method="post" action=".">
 {% csrf_token %}
@@ -24,4 +25,5 @@ Forgot password?
 <p>Have a GitHub account?
 <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
 </p>
+</div>
 {% endblock %}

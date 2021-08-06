@@ -8,9 +8,10 @@ Register
 <div class="box">
     <h1>Rango say...</h1>
 <h2>Register Here</h2>
-<form method="post" action=".">
+<form class="form" method="post" action=".">
 {% csrf_token %}
 {{ form.as_p }}
 <input type="submit" value="Register" />
 </form>
+</div>
 {% endblock %}
