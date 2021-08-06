@@ -1,7 +1,7 @@
 from django import forms
 from rango.models import Page, Category
 from django.contrib.auth.models import User
-from rango.models import UserProfile
+from rango.models import UserProfile, Comment
 
 
 class CategoryForm(forms.ModelForm):
@@ -41,5 +41,14 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('website', 'picture',)
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('name', 'body',)
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'body': forms.Textarea(attrs={'class': 'form-control'}),
+        }
     
 

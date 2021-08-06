@@ -12,6 +12,20 @@
 {% block body_block %}
     {% if category %}
     <h1>{{ category.name }}</h1>
+    <!--like button-->
+    <div>
+        <strong id="like_count">{{ category.likes }}</strong> likes this 
+        {% if user.is_authenticated %}
+        <button id="like_btn"
+                data-categoryid="{{ category.id }}"
+                class="btn btn-primary btn-sm" 
+                type="button">
+            Like Category     
+            <span class="iconify" data-icon="feather:thumbs-up" style="color: blue;"></span>      
+        </button>
+        {% endif %}
+        
+    </div>
     {% if pages %}
     <ul>
         {% for page in pages %}
@@ -26,6 +40,30 @@
     {% endif %}
     {% else %}
     The specified category does not exist.
+    {% endif %}
+    {% if user.is_authenticated %}
+    <br/><br/>
+    <a href="{%url 'rango:add_comment' category.slug %}">Comment here...</a>
+    <br/><br/>
+    {%else%}
+    <h3>You have to login to comment</h3>
+    {% endif %}
+    {% if not category.comments.all %}
+        No comments yet...
+    {%else%}
+        {%for comment in category.comments.all%}
+        <br/><br/>
+        <hr>
+            <strong>
+                [{{comment.name}}]says:
+            </strong>
+                <br/>
+                {{comment.body}}
+                <br/> <br/>
+                {{comment.date_added}}
+                <hr>
+            
+        {% endfor%}
     {% endif %}
 {% endblock %}
        

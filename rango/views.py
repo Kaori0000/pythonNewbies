@@ -1,3 +1,6 @@
+from rango.models import Comment
+from django.urls.base import reverse_lazy
+from rango.webhose_search import run_query
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from rango.models import Category
@@ -15,6 +18,8 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
 from rango.models import UserProfile
 from registration.backends.simple.views import RegistrationView
+from datetime import datetime
+from django.views.generic import CreateView
 
 
 def index(request):
@@ -234,3 +239,44 @@ def all_categories(request):
 class MyRegistrationView(RegistrationView):
     def get_success_url(self, user):
         return reverse('rango:register_profile')
+
+class AddCommentView(CreateView):
+    model =Comment
+    template_name='rango/add_comment.html'
+    fields = '__all__'
+    
+    def get_success_url(self):
+        return reverse_lazy('index')
+
+class LikeCategoryView(View):
+    @method_decorator(login_required)
+    def get(self, request):
+        category_id = request.GET['category_id']
+
+        try:
+            category = Category.objects.get(id=int(category_id))
+        except Category.DoesNotExist:
+            return HttpResponse(-1)
+        except ValueError:
+            return HttpResponse(-1)
+        
+        category.likes = category.likes + 1
+        category.save()
+        return HttpResponse(category.likes)
+
+
+
+
+    
+def search(request):
+    result_list = []
+    query = ''
+
+    if request.method == 'POST':
+        query = request.POST['query'].strip()
+
+        if query:
+            result_list = run_query(query)
+    
+    return render(request, 'rango/search.html', {'result_list': result_list, 'query': query})
+
