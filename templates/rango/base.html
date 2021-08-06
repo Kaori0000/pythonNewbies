@@ -45,12 +45,14 @@
                 
             </ul>
             <div class="search-bar">
-                <form>
-                    <input type="text" placeholder="Please type what you what to search...">
-                    <button type="submit"></button>
+                <form method="post"
+                action="{% url 'rango:search' %}">
+                {% csrf_token %}
+                    <input type="text" placeholder="Please type what you what to search..." name="query">
+                    <button type="submit" name="submit"></button>
                 </form>
             </div>
-        
+           
         </div>
         <div>
         {% block body_block %}

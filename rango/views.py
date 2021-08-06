@@ -15,6 +15,9 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
 from rango.models import UserProfile
 from registration.backends.simple.views import RegistrationView
+from django.urls.base import reverse_lazy
+from rango.webhose_search import run_query
+from datetime import datetime
 
 
 def index(request):
@@ -234,3 +237,15 @@ def all_categories(request):
 class MyRegistrationView(RegistrationView):
     def get_success_url(self, user):
         return reverse('rango:register_profile')
+
+def search(request):
+    result_list = []
+    query = ''
+
+    if request.method == 'POST':
+        query = request.POST['query'].strip()
+
+        if query:
+            result_list = run_query(query)
+    
+    return render(request, 'rango/search.html', {'result_list': result_list, 'query': query})
