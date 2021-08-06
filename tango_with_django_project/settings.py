@@ -176,5 +176,5 @@ LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/'
 # For SOCIAL_AUTH_GITHUB_SECRET, obtain the client secrets and replace the value with your client secrets
 
 
-SOCIAL_AUTH_GITHUB_KEY = '37cf450f91e521899dff'  
-SOCIAL_AUTH_GITHUB_SECRET = '9ffdbd95c4e278fc27dde61eafd482fcfe6e7f07'
+#SOCIAL_AUTH_GITHUB_KEY = '37cf450f91e521899dff'  
+#SOCIAL_AUTH_GITHUB_SECRET = '9ffdbd95c4e278fc27dde61eafd482fcfe6e7f07'
