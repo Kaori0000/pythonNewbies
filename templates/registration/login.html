@@ -4,19 +4,10 @@ Login
 {% endblock %}
 {% block body_block %}
 <div class="box">
-<h1>Rango say...</h1>
-<h2>Login</h2>
+<h1>Login</h1>
 <form method="post" action=".">
 {% csrf_token %}
-<p id="p">Name</p>
-<div class="inputBox">
-    <input type="text" name="username" required="required" >
-</div>
-<p id="p">Password</p>
-<div class="inputBox">
-        <input type="password" name="password" required="required">
-</div>
-
+{{ form.as_p }}
 <input type="submit" value="Log In" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
@@ -29,4 +20,10 @@ Not a member?
 Forgot password?
 <a href="{% url 'auth_password_reset' %}">Reset here!</a>    
 </p>
+
+
+<p>Have a GitHub account?
+<a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
+</p>
+</div>
 {% endblock %}

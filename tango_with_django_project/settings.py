@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+#from tango_with_django_project import keys
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rango',
     'registration',
+    'social_django', #GitHub login
 ]
 
 PASSWORD_HASHERS = [
@@ -61,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',#GitHub login
 ]
 
 ROOT_URLCONF = 'tango_with_django_project.urls'
@@ -76,8 +80,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.media'
-            ],
+                'django.template.context_processors.media',
+                'social_django.context_processors.backends',  #GitHub login
+                'social_django.context_processors.login_redirect', #GitHub login
+            ]
         },
     },
 ]
@@ -148,10 +154,27 @@ ACCOUNT_ACTIVATION_DAYS = 7 #account activation eamil is set to be valid for 7 d
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = 'smtp.gmail.com'  # mail service smtp
-EMAIL_HOST_USER = 'hc3406171@gmail.com'  # mymial is not any email: use environment variable to hide your email in production.
-EMAIL_HOST_PASSWORD ='oqfhqztsaskqvbxd'   # password
+EMAIL_HOST_USER = 'hc3406171@gmail.com'  # email create for demonstration 
+EMAIL_HOST_PASSWORD ='oqfhqztsaskqvbxd'   # APP password of the example email
 EMAIL_PORT = 587
 #EMAIL_USE_TLS = True
 EMAIL_USE_TLS = True
 #EMAIL_USE_SSL = True
 
+#GitHub login---
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+LOGIN_URL = 'auth_login'
+LOGOUT_URL = 'auth_logout'
+LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/'
+# To enable social authentication with your GitHub account, please login to your GitHub account, 
+# go to GitHub - developer settings, 
+# register a new application, obtain the client ID, and replace the value of SOCIAL_AUTH_GITHUB_KEY with your client ID
+# For SOCIAL_AUTH_GITHUB_SECRET, obtain the client secrets and replace the value with your client secrets
+
+
+SOCIAL_AUTH_GITHUB_KEY = '37cf450f91e521899dff'  
+SOCIAL_AUTH_GITHUB_SECRET = '9ffdbd95c4e278fc27dde61eafd482fcfe6e7f07'

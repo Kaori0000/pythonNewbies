@@ -20,24 +20,26 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views #
+from django.conf.urls import url #GitHub login
 
 from registration.backends.simple.views import RegistrationView
 from django.urls import reverse
-
-
 
 class MyRegistrationView(RegistrationView):
     def get_success_url(self, user):
         return reverse('rango:register_profile')
 
 
+
+
+
 urlpatterns = [
     path('',views.index,name='index'),
     path('rango/',include('rango.urls')),
     path('admin/', admin.site.urls),
-    path('accounts/register/',
-        MyRegistrationView.as_view(),
-        name='registration_register'),
+    
+    path('accounts/register/', MyRegistrationView.as_view(), name='registration_register'),
+
     path('accounts/', include('registration.backends.default.urls')),
     path('password_reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(
         template_name='registration/password_reset_confirm.html'
@@ -45,5 +47,5 @@ urlpatterns = [
     path('password_reset_complete/', auth_views.PasswordResetCompleteView.as_view(
         template_name='registration/password_reset_complete.html'
     ), name='password_reset_complete'), 
-    #@
+    url(r'^oauth/', include('social_django.urls', namespace='social')), #GitHub login
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

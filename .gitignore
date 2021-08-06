@@ -2,5 +2,8 @@
 .DS_Store
 __pycache__/
 db.sqlite3
+*.pyc
+keys.py
+migrations
 *.key
 thumbs.db

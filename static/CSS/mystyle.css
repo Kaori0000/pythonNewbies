@@ -198,9 +198,10 @@ ul.breadcrumb li a:hover:not(.active) {color: rgb(77, 113, 168);}
     padding: 0;
     color: #505050;
     text-align: center;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
     }
-
-   
+    
 #profile-pic{
     border-radius:15px;
 }
@@ -242,6 +243,19 @@ label{
    left: 50%;
    transform: translate(-50%);
    }
+   
+    .body2 input[type="button"]{
+        border: none;
+        outline: none;
+        color: #fff;
+        background: #03a9f4;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%);
+        }
    .body2 li{
     color: #587ab8;
     font-size: 14px;
@@ -259,3 +273,4 @@ label{
     color: #587ab8;
     font-size: 14px;
    }
+   
