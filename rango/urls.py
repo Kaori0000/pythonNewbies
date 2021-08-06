@@ -16,6 +16,7 @@ urlpatterns = [
     #path('logout/', views.user_logout, name='logout'),
 
     path('profile_register/', views.register_profile, name='profile_register'),
+    #need to use slug
     path('profile/<username>/', views.ProfileView.as_view(), name='profile'),
     path('accounts/register/',views.MyRegistrationView.as_view(),
         name='registration_register'),
