@@ -40,11 +40,7 @@ class LoginPageViewTest(TestCase):
         self.assertContains(response, '<a href="%s">Reset here!</a>' % reverse('auth_password_reset'),html=True)
         #check if the login page contains a hyper link for reset password
        
-#class PasswordResetLinkTest(TestCase):
-    #def test_password_Reset_Link_(self):
-        #response = self.client.get(reverse('password_reset_confirm'))
-        #self.assertEqual(response.status_code, 200)
-        #self.assertContains(response,'Password reset failed. Invalid link.')
+
      
 
 class UserProfileUserNameTest(TestCase):
@@ -59,6 +55,8 @@ class UserProfileUserNameTest(TestCase):
         userProfile.save()
         self.assertEqual(userProfile.user.username, userA.username) 
 
+        
+#check if the about us page has team member's pictures and contact informatin 
 class AboutUsePageTest(TestCase):
     def test_about_us_page(self):
         response = self.client.get(reverse('rango:about'))
@@ -71,13 +69,5 @@ class AboutUsePageTest(TestCase):
         self.assertContains(response,'Glasgow, G12 8QQ, Scotland')
         self.assertContains(response,'cats@student.gla.ac.uk')
 
-#class UserProfileAccessTest(TestCase):
-    #def test_user_profile_access(self):
-        #c = Client()
-        #c.login(username='tester', password='tester123!')
-        #response = self.client.get(reverse('rango:profile'))
-       # response = self.client.get(reverse('rango:'))
-       # self.assertEqual(response.status_code,200)
-    
-#http://127.0.0.1:8000/rango/profile/Rango02/
+
 
