@@ -9,6 +9,7 @@ urlpatterns = [
     path('about_rango/', views.AboutRangoView.as_view(), name='about_rango'),
     path('category/<slug:category_name_slug>/', views.show_category, name='show_category'),
     path('add_category/', views.AddCategoryView.as_view(), name='add_category'),
+    path('goto/', views.goto_url, name='goto'),
     path('category/<slug:category_name_slug>/add_page/', views.add_page, name='add_page'),
     path('all_categories/',views.all_categories,name='all_categories'),
     path('register_profile/', views.register_profile, name='register_profile'),
