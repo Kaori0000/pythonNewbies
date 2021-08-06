@@ -1,0 +1,19 @@
+{% block title_block %}
+    Let us see your opinion!
+{% endblock %}
+
+{% block content%}
+
+<h1>type your comment below</h1>
+<br/>
+<br/>
+    <div class ="form-group">
+<form method ="POST">
+            {% csrf_token%}
+            {{form.as_p}}
+            <button class="btn
+            btn-secondary">Add
+            Comment</button>
+    </div>
+
+{% endblock %}

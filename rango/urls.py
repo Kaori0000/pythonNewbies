@@ -1,5 +1,6 @@
 from django.urls import path
 from rango import views
+from rango.views import AddCommentView
 
 
 app_name = 'rango'
@@ -21,5 +22,9 @@ urlpatterns = [
     path('profile/<username>/', views.ProfileView.as_view(), name='profile'),
     path('accounts/register/',views.MyRegistrationView.as_view(),
         name='registration_register'),
+    
+    path('like_category/', views.LikeCategoryView.as_view(), name='like_category'),
     path('search/', views.search, name='search'),
+
+    path('category/<slug:category_name_slug>/add_comment/',AddCommentView.as_view(),name ='add_comment'),
 ]

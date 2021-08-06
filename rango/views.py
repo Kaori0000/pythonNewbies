@@ -9,7 +9,7 @@ from rango.forms import UserProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-
+from rango.models import Comment
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
@@ -18,6 +18,7 @@ from registration.backends.simple.views import RegistrationView
 from django.urls.base import reverse_lazy
 from rango.webhose_search import run_query
 from datetime import datetime
+from django.views.generic import CreateView
 
 
 def index(request):
@@ -237,6 +238,40 @@ def all_categories(request):
 class MyRegistrationView(RegistrationView):
     def get_success_url(self, user):
         return reverse('rango:register_profile')
+
+class AddCommentView(CreateView):
+    model =Comment
+    template_name='rango/add_comment.html'
+    fields = '__all__'
+    
+    def get_success_url(self):
+        return reverse_lazy('index')
+class LikeCategoryView(View):
+    @method_decorator(login_required)
+    def get(self, request):
+        category_id = request.GET['category_id']
+
+        try:
+            category = Category.objects.get(id=int(category_id))
+        except Category.DoesNotExist:
+            return HttpResponse(-1)
+        except ValueError:
+            return HttpResponse(-1)
+        
+        category.likes = category.likes + 1
+        category.save()
+        return HttpResponse(category.likes)
+def goto_url(request):
+    if request.method == 'GET':
+        page_id = request.GET.get('page_id')
+        try:
+            selected_page = Page.objects.get(id=page_id)
+        except Page.DoesNotExist:
+            return redirect(reverse('rango:index'))
+        selected_page.views = selected_page.views + 1
+        selected_page.save()
+        return redirect(selected_page.url)
+    return redirect(reverse('rango:index'))
 
 def search(request):
     result_list = []

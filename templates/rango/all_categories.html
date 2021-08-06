@@ -6,5 +6,27 @@
 {% endblock %}
    
 {% block body_block %}
-
+<div id="tabs"> 
+ 
+    <div id="left"> 
+    <ul>
+    {% if categories %}
+    {% for c in categories %}
+    {% if c == current_category %}
+    <li><a href="{% url 'rango:show_category' c.slug %}">{{ c.name }}</a></li>
+    {% else %}
+    <li><a href="{% url 'rango:show_category' c.slug %}">{{ c.name }}</a></li>
+    {% endif %}
+    {% endfor %}
+{% else %}
+    <li>There are no categories present.</li>
+    
+{% endif %}
+{% if user.is_authenticated %}
+    <a href="{% url 'rango:add_category' %}">Add Category</a> <br />
+    {% endif %}
+    </ul>
+    </div>
+    
+</div>
 {% endblock %}

@@ -29,6 +29,7 @@
 #most-part{
     height: 150px;
 	padding:20px 40px; 
+    margin-top: 40px;
     margin-bottom:20px;
 	border-radius:15px;
     box-shadow: 0 0  20px #a3a3a3
@@ -273,4 +274,68 @@ label{
     color: #587ab8;
     font-size: 14px;
    }
-   
+   #tabs{ 
+    margin-top: 40px;
+    text-align: center; 
+    }
+    #left{
+        width: 225px; 
+        float:left;
+        border-right: 2px solid #606060;}
+    #left ul{
+        list-style-type: none;
+        padding-inline-start: 20px;
+    }
+    #left li{
+        color: #505050;
+        font-size: 30px;
+        margin-bottom: 10px;
+        text-align: justify;
+       }
+    #left a{
+        color: #505050;
+    }  
+    #left a:hover{
+        color: rgb(77, 113, 168);
+    }  
+    #right{
+        width: 600px; 
+        height: 350px; 
+        margin-left:20px; 
+        float:left;
+        text-align: center;}
+    #category{
+        background-image: linear-gradient(#fff, #cfe6f5);
+        float:left;
+
+        height: 400px;
+        width: 33%;
+        padding:20px 40px; 
+        margin-top:20px;
+        margin-right: 40px;
+        margin-left: 20px;
+        border-radius:15px;
+        box-shadow: 0 0  20px #a3a3a3
+    }
+    #category h1{
+        text-indent: 0px;
+    }
+    #category:hover{
+        box-shadow: 0 0  25px #404040
+    }
+    #comment{
+        border-left: #404040;
+        margin-top: 40px
+    }
+    #comment button{
+        border: none;
+        outline: none;
+        color: #fff;
+        background: #03a9f4;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        position: relative;
+        left: 20%;
+        transform: translate(-50%);
+        }
